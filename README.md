@@ -204,9 +204,11 @@ Bump `version` in `custom_components/neosmartblinds/manifest.json` and push to `
 
 Dependabot opens a pull request when an action used by the workflows has a new version.
 
-## Credits
+## Background and credits
 
-Version 3 is maintained by [@josh345rtfvqw](https://github.com/josh345rtfvqw). It builds on the original integration by [@4n0nD3v3l0p3r](https://github.com/4n0nD3v3l0p3r/Home_Assistant_NeoSmartBlinds) and the 2.x fork by [@mtgeekman](https://github.com/mtgeekman/Home_Assistant_NeoSmartBlinds), with contributions from [@clara-j](https://github.com/clara-j) and [@gee-jay-bee](https://github.com/gee-jay-bee).
+I originally used the integration by [@4n0nD3v3l0p3r](https://github.com/4n0nD3v3l0p3r/Home_Assistant_NeoSmartBlinds), and then the 2.x fork by [@mtgeekman](https://github.com/mtgeekman/Home_Assistant_NeoSmartBlinds), to control my blinds. Both were missing features I needed and hadn't been updated in years, so I rewrote the integration as version 3. Thanks to both of them, and to [@clara-j](https://github.com/clara-j) and [@gee-jay-bee](https://github.com/gee-jay-bee) for their work on the earlier versions.
+
+Version 3 is maintained by [@josh345rtfvqw](https://github.com/josh345rtfvqw).
 
 ## License
 
