@@ -1,0 +1,66 @@
+name: Release
+
+on:
+  workflow_run:
+    workflows: [Validate]
+    types: [completed]
+    branches: [master]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Tag and release
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_branch == 'master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0
+
+      - name: Read manifest version
+        id: version
+        run: |
+          version=$(python3 -c "import json; print(json.load(open('custom_components/neosmartblinds/manifest.json'))['version'])")
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "tag=v$version" >> "$GITHUB_OUTPUT"
+
+      - name: Check for an existing tag
+        id: check
+        run: |
+          if git rev-parse -q --verify "refs/tags/${{ steps.version.outputs.tag }}" >/dev/null; then
+            echo "Tag ${{ steps.version.outputs.tag }} already exists, nothing to release."
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Write release notes
+        if: steps.check.outputs.exists == 'false'
+        run: |
+          previous=$(git describe --tags --abbrev=0 --match 'v*' HEAD 2>/dev/null || true)
+          {
+            echo "## Changes"
+            echo
+            if [ -n "$previous" ]; then
+              git log --no-merges --format='- %s' "$previous..HEAD"
+            else
+              git log --no-merges --format='- %s' HEAD
+            fi
+          } > release_notes.md
+          cat release_notes.md
+
+      - name: Create tag and release
+        if: steps.check.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ steps.version.outputs.tag }}" \
+            --target "${{ github.event.workflow_run.head_sha }}" \
+            --title "${{ steps.version.outputs.tag }}" \
+            --notes-file release_notes.md

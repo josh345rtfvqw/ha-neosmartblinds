@@ -1,0 +1,277 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Neo Smart Controller",
+        "description": "Enter the controller's address. It is shown under Your Controllers in the Neo app.",
+        "data": {
+          "host": "Host",
+          "protocol": "Protocol"
+        },
+        "data_description": {
+          "host": "IP address or host name of the Neo Smart Controller.",
+          "protocol": "HTTP is recommended because the controller reports errors over HTTP. TCP can't tell you if a command was wrong."
+        }
+      },
+      "connection": {
+        "title": "Connection details",
+        "description": "Controller {host} over {protocol}.",
+        "data": {
+          "port": "Port",
+          "hub_id": "Controller ID"
+        },
+        "data_description": {
+          "port": "8838 for HTTP, 8839 for TCP, unless you have changed it.",
+          "hub_id": "The 24-character controller ID, shown under Your Controller in the Neo app. Required for HTTP, not used for TCP."
+        }
+      },
+      "reconfigure": {
+        "title": "Change the controller",
+        "data": {
+          "host": "Host",
+          "protocol": "Protocol"
+        },
+        "data_description": {
+          "host": "IP address or host name of the Neo Smart Controller.",
+          "protocol": "HTTP is recommended because the controller reports errors over HTTP."
+        }
+      },
+      "reconfigure_connection": {
+        "title": "Connection details",
+        "description": "Controller {host} over {protocol}.",
+        "data": {
+          "port": "Port",
+          "hub_id": "Controller ID"
+        },
+        "data_description": {
+          "port": "8838 for HTTP, 8839 for TCP, unless you have changed it.",
+          "hub_id": "The 24-character controller ID, shown under Your Controller in the Neo app. Required for HTTP, not used for TCP."
+        }
+      },
+      "reauth_confirm": {
+        "title": "Controller ID not recognised",
+        "description": "The controller at {host} did not recognise the controller ID. Enter the 24-character ID shown under Your Controller in the Neo app.",
+        "data": {
+          "hub_id": "Controller ID"
+        }
+      }
+    },
+    "error": {
+      "invalid_host": "Enter a host.",
+      "invalid_port": "Enter a port from 1 to 65535.",
+      "invalid_protocol": "Pick HTTP or TCP.",
+      "hub_id_required": "HTTP needs the controller ID.",
+      "invalid_hub_id": "The controller ID is 24 letters and digits.",
+      "cannot_connect": "Could not connect to the controller on that host and port."
+    },
+    "abort": {
+      "already_configured": "This controller is already set up.",
+      "reauth_successful": "Controller ID updated.",
+      "reconfigure_successful": "Controller updated."
+    }
+  },
+  "config_subentries": {
+    "blind": {
+      "entry_type": "Blind",
+      "initiate_flow": {
+        "user": "Add blind"
+      },
+      "step": {
+        "user": {
+          "title": "Add blind",
+          "data": {
+            "name": "Name",
+            "blind_code": "Blind code",
+            "motor_code": "Motor code",
+            "rail": "Rail",
+            "tdbu_extended": "Extended top-down/bottom-up commands",
+            "tilt": "Supports tilt",
+            "percent_support": "Positioning mode",
+            "close_time": "Close time",
+            "open_time": "Open time",
+            "startup_sync": "Re-sync when Home Assistant starts",
+            "start_position": "Start position",
+            "parent_group": "Room code"
+          },
+          "data_description": {
+            "name": "What the blind is called in Home Assistant.",
+            "blind_code": "ID1.ID2-channel, for example 021.230-04. Shown on the blind's advanced page in the Neo app. Channel 01 to 14 is one blind, 15 is the whole room.",
+            "motor_code": "Pick the motor brand, or type any two-character code. Leave empty if your blind has no motor code.",
+            "rail": "Which rail this entry controls. Use 2 or 3 only for top-down/bottom-up blinds.",
+            "tdbu_extended": "Use the u4/d4/x2 command set. Only for top-down/bottom-up blinds with motor code mb, ra, ap or db.",
+            "tilt": "Adds tilt open and close buttons that send micro-steps. Only works on rails that have micro-step commands.",
+            "percent_support": "How Home Assistant handles positions for this blind.",
+            "close_time": "Seconds from fully open to fully closed.",
+            "open_time": "Seconds from fully closed to fully open. Leave empty to use the close time.",
+            "startup_sync": "Send open or close when Home Assistant starts, so the position is known. Not sent when the integration reloads.",
+            "start_position": "Position to assume (0 to 100) before any position has been saved.",
+            "parent_group": "Optional. The code for the blind's room, ending in -15, for example 021.230-15. Blinds that share a room code get a room cover and send room commands together."
+          }
+        },
+        "reconfigure": {
+          "title": "Change blind",
+          "menu_options": {
+            "settings": "Settings",
+            "measure": "Measure open and close times"
+          }
+        },
+        "settings": {
+          "title": "Blind settings",
+          "data": {
+            "name": "Name",
+            "blind_code": "Blind code",
+            "motor_code": "Motor code",
+            "rail": "Rail",
+            "tdbu_extended": "Extended top-down/bottom-up commands",
+            "tilt": "Supports tilt",
+            "percent_support": "Positioning mode",
+            "close_time": "Close time",
+            "open_time": "Open time",
+            "startup_sync": "Re-sync when Home Assistant starts",
+            "start_position": "Start position",
+            "parent_group": "Room code"
+          },
+          "data_description": {
+            "name": "What the blind is called in Home Assistant.",
+            "blind_code": "ID1.ID2-channel, for example 021.230-04. Shown on the blind's advanced page in the Neo app. Channel 01 to 14 is one blind, 15 is the whole room.",
+            "motor_code": "Pick the motor brand, or type any two-character code. Leave empty if your blind has no motor code.",
+            "rail": "Which rail this entry controls. Use 2 or 3 only for top-down/bottom-up blinds.",
+            "tdbu_extended": "Use the u4/d4/x2 command set. Only for top-down/bottom-up blinds with motor code mb, ra, ap or db.",
+            "tilt": "Adds tilt open and close buttons that send micro-steps. Only works on rails that have micro-step commands.",
+            "percent_support": "How Home Assistant handles positions for this blind.",
+            "close_time": "Seconds from fully open to fully closed.",
+            "open_time": "Seconds from fully closed to fully open. Leave empty to use the close time.",
+            "startup_sync": "Send open or close when Home Assistant starts, so the position is known. Not sent when the integration reloads.",
+            "start_position": "Position to assume (0 to 100) before any position has been saved.",
+            "parent_group": "Optional. The code for the blind's room, ending in -15, for example 021.230-15. Blinds that share a room code get a room cover and send room commands together."
+          }
+        },
+        "measure": {
+          "title": "Measure open and close times",
+          "description": "This times how long {name} takes to close and to open. Press Submit to open the blind fully."
+        },
+        "measure_opened": {
+          "title": "Opening",
+          "description": "Wait until the blind is fully open and has stopped. Then press Submit: the blind starts closing and the timer starts."
+        },
+        "measure_closing": {
+          "title": "Closing",
+          "description": "Press Submit as soon as the blind stops at the bottom. The blind then starts opening and a new timer starts."
+        },
+        "measure_opening": {
+          "title": "Opening",
+          "description": "Press Submit as soon as the blind stops at the top."
+        }
+      },
+      "error": {
+        "invalid_name": "Enter a name.",
+        "invalid_blind_code": "Enter a blind code like 021.230-04. ID1 and ID2 are 000 to 255, the channel is 00 to 15.",
+        "invalid_motor_code": "A motor code is two letters or digits.",
+        "invalid_rail": "Pick rail 1, 2 or 3.",
+        "extended_not_supported": "The extended commands only work with motor codes mb, ra, ap and db.",
+        "invalid_mode": "Pick a positioning mode.",
+        "position_not_supported": "\"Blind moves to the position\" needs the top rail, no extended commands, and a motor code that accepts positions (no, db, ra, rb, ap, bl, mb, jo) or no motor code.",
+        "invalid_time": "Enter a time in seconds greater than 0.",
+        "invalid_sync": "Pick a re-sync option.",
+        "invalid_start_position": "Enter a position from 0 to 100.",
+        "invalid_room_code": "A room code looks like 021.230-15 and must end in -15.",
+        "already_configured": "This blind code, motor code and rail is already set up on this controller.",
+        "command_failed": "The command could not be sent. Check the controller and try again."
+      },
+      "abort": {
+        "reconfigure_successful": "Blind updated.",
+        "measured": "Saved. Close time {close_time} s, open time {open_time} s."
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Room names",
+        "description": "Name each room code shared by two or more blinds: {rooms}. Unnamed rooms are called Room followed by the room code."
+      }
+    },
+    "abort": {
+      "no_rooms": "No room code is shared by two or more blinds yet. Set the same room code on at least two blinds first."
+    }
+  },
+  "selector": {
+    "protocol": {
+      "options": {
+        "http": "HTTP (recommended)",
+        "tcp": "TCP"
+      }
+    },
+    "rail": {
+      "options": {
+        "1": "1: top/middle rail",
+        "2": "2: bottom rail",
+        "3": "3: both rails"
+      }
+    },
+    "percent_support": {
+      "options": {
+        "0": "Open and close only",
+        "1": "Blind moves to the position",
+        "2": "Timed position (estimated)"
+      }
+    },
+    "startup_sync": {
+      "options": {
+        "none": "Don't re-sync",
+        "open": "Open",
+        "close": "Close"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "connection": {
+        "name": "Connection"
+      }
+    },
+    "button": {
+      "favourite_1": {
+        "name": "Favourite position 1"
+      },
+      "favourite_2": {
+        "name": "Favourite position 2"
+      }
+    },
+    "cover": {
+      "room": {
+        "name": "Blinds"
+      }
+    }
+  },
+  "exceptions": {
+    "command_failed": {
+      "message": "Command {command} to {name} failed: {error}"
+    },
+    "invalid_raw_command": {
+      "message": "\"{command}\" is not a two-character action."
+    }
+  },
+  "issues": {
+    "deprecated_yaml": {
+      "title": "Neo Smart Blinds YAML has been imported",
+      "description": "Your `cover:` entries with `platform: {domain}` have been imported into the UI. Remove them from configuration.yaml and restart Home Assistant."
+    },
+    "yaml_import_failed": {
+      "title": "Neo Smart Blinds could not import {name}",
+      "description": "The YAML blind {name} was not imported: {reason}. Add it from the UI instead (Settings > Devices & services > Neo Smart Blinds > Add blind), then remove it from configuration.yaml and restart Home Assistant."
+    }
+  },
+  "services": {
+    "send_command": {
+      "name": "Send command",
+      "description": "Sends any two-character action to the selected blinds or rooms. Warning: programming actions can change or wipe a motor's settings. Only use actions you understand.",
+      "fields": {
+        "command": {
+          "name": "Command",
+          "description": "Two-character action, for example gp or i1."
+        }
+      }
+    }
+  }
+}

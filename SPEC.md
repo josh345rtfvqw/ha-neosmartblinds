@@ -282,9 +282,9 @@ End the README with this section, word for word:
 
 > ## Background and credits
 >
-> I originally used the integration by [@4n0nD3v3l0p3r](https://github.com/4n0nD3v3l0p3r/Home_Assistant_NeoSmartBlinds), and then the 2.x fork by [@mtgeekman](https://github.com/mtgeekman/Home_Assistant_NeoSmartBlinds), to control my blinds. Both were missing features I needed and hadn't been updated in years, so I rewrote the integration as version 3. Thanks to both of them, and to [@clara-j](https://github.com/clara-j) and [@gee-jay-bee](https://github.com/gee-jay-bee) for their work on the earlier versions.
+> I originally used the integration by [@4n0nD3v3l0p3r](https://github.com/4n0nD3v3l0p3r/Home_Assistant_NeoSmartBlinds), and then the 2.x fork by [@mtgeekman](https://github.com/mtgeekman/Home_Assistant_NeoSmartBlinds), to control my blinds. Both were missing features I needed and hadn't been updated in years, so I rewrote the integration from scratch as version 4. It was written from a specification of how the integration should behave and Neo's published API documents, without reference to the earlier code, and none of the code from earlier versions was copied into it. Thanks to both of them, and to [@clara-j](https://github.com/clara-j) and [@gee-jay-bee](https://github.com/gee-jay-bee) for their work on the earlier versions.
 >
-> Version 3 is maintained by [@josh345rtfvqw](https://github.com/josh345rtfvqw).
+> Version 4 is maintained by [@josh345rtfvqw](https://github.com/josh345rtfvqw).
 
 ## Tests and CI
 
@@ -292,8 +292,9 @@ End the README with this section, word for word:
 - Cover: the config flow (both steps, errors, duplicates, re-auth, reconfigure), blind subentry validation, each positioning mode's commands, mid-move changes, restore after restart, room command combining, YAML import (including unique IDs and repair issues), the raw command action, notifications.
 - GitHub Actions: tests, hassfest and HACS validation on push, pull requests and weekly. A release workflow that tags and releases when the manifest version changes.
 
-## Open questions for Josh
+## Decisions
 
-1. Repo name and whether the domain stays `neosmartblinds`. (Keeping it is what lets existing installs upgrade in place.)
-2. Whether v3.x installs should upgrade in place. This spec assumes yes, so the config entry keys above are kept.
-3. Favourite 1 uses `gp`. Neo says `i1` replaces `gp` on NEO motors. Should favourite 1 send `i1` for `no` motors? (Keep `gp` unless Josh confirms `i1` works on his blinds.)
+1. The domain stays `neosmartblinds`.
+2. v2 YAML and v3.x installs upgrade in place, so the interface names above are kept exactly.
+3. Favourite 1 sends `gp` for every motor.
+4. The manifest version is `4.0.0`.

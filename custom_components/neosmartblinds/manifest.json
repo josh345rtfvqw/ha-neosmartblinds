@@ -1,0 +1,12 @@
+{
+  "domain": "neosmartblinds",
+  "name": "Neo Smart Blinds",
+  "codeowners": ["@josh345rtfvqw"],
+  "config_flow": true,
+  "documentation": "https://github.com/josh345rtfvqw/ha-neosmartblinds",
+  "integration_type": "hub",
+  "iot_class": "assumed_state",
+  "issue_tracker": "https://github.com/josh345rtfvqw/ha-neosmartblinds/issues",
+  "requirements": [],
+  "version": "4.0.0"
+}

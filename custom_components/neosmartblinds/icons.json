@@ -1,0 +1,22 @@
+{
+  "entity": {
+    "button": {
+      "favourite_1": {
+        "default": "mdi:star"
+      },
+      "favourite_2": {
+        "default": "mdi:star-outline"
+      }
+    },
+    "cover": {
+      "room": {
+        "default": "mdi:blinds-horizontal"
+      }
+    }
+  },
+  "services": {
+    "send_command": {
+      "service": "mdi:console-line"
+    }
+  }
+}
