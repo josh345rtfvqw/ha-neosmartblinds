@@ -1,5 +1,12 @@
 # Neo Smart Blinds for Home Assistant
 
+[![HACS](https://img.shields.io/badge/HACS-Default-41BDF5)](https://hacs.xyz)
+[![Release](https://img.shields.io/github/v/release/josh345rtfvqw/ha-neosmartblinds?label=Release)](https://github.com/josh345rtfvqw/ha-neosmartblinds/releases/latest)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](https://github.com/josh345rtfvqw/ha-neosmartblinds/blob/master/LICENSE)
+[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2025.8%2B-blue)](https://www.home-assistant.io)
+![Connection](https://img.shields.io/badge/Connection-Local-brightgreen)
+[![Validate](https://github.com/josh345rtfvqw/ha-neosmartblinds/actions/workflows/validate.yml/badge.svg)](https://github.com/josh345rtfvqw/ha-neosmartblinds/actions/workflows/validate.yml)
+
 Control blinds through a Neo Smart Controller on your local network. No cloud, no extra Python packages. Everything is set up from the Home Assistant UI.
 
 The controller never reports where a blind is, so Home Assistant works out the position from the commands it sends and the times you give it. This README explains how to keep that estimate accurate.
