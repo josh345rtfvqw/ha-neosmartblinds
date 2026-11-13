@@ -60,7 +60,7 @@ REASONS = {
     "invalid_protocol": "protocol must be http or tcp",
     "invalid_port": "port must be a number from 1 to 65535",
     "hub_id_required": "hub_id is required for HTTP",
-    "invalid_hub_id": "hub_id must be the 24 character controller ID",
+    "invalid_hub_id": "hub_id must be the controller ID, 20 or more letters and digits",
 }
 
 

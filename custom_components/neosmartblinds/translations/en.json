@@ -22,7 +22,7 @@
         },
         "data_description": {
           "port": "8838 for HTTP, 8839 for TCP, unless you have changed it.",
-          "hub_id": "The 24-character controller ID, shown under Your Controller in the Neo app. Required for HTTP, not used for TCP."
+          "hub_id": "The controller ID (20 or more characters), shown under Your Controller in the Neo app. Required for HTTP, not used for TCP."
         }
       },
       "reconfigure": {
@@ -45,12 +45,12 @@
         },
         "data_description": {
           "port": "8838 for HTTP, 8839 for TCP, unless you have changed it.",
-          "hub_id": "The 24-character controller ID, shown under Your Controller in the Neo app. Required for HTTP, not used for TCP."
+          "hub_id": "The controller ID (20 or more characters), shown under Your Controller in the Neo app. Required for HTTP, not used for TCP."
         }
       },
       "reauth_confirm": {
         "title": "Controller ID not recognised",
-        "description": "The controller at {host} did not recognise the controller ID. Enter the 24-character ID shown under Your Controller in the Neo app.",
+        "description": "The controller at {host} did not recognise the controller ID. Enter the ID shown under Your Controller in the Neo app.",
         "data": {
           "hub_id": "Controller ID"
         }
@@ -61,7 +61,7 @@
       "invalid_port": "Enter a port from 1 to 65535.",
       "invalid_protocol": "Pick HTTP or TCP.",
       "hub_id_required": "HTTP needs the controller ID.",
-      "invalid_hub_id": "The controller ID is 24 letters and digits.",
+      "invalid_hub_id": "The controller ID is 20 or more letters and digits.",
       "cannot_connect": "Could not connect to the controller on that host and port."
     },
     "abort": {

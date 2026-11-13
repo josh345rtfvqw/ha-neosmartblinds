@@ -41,7 +41,7 @@ The Neo Smart Controller is on the local network. It never reports blind positio
 
 `GET http://<host>:<port>/neo/v1/transmit?command=<command>&id=<controller id>&hash=<hash>`
 
-- Controller ID: 24 characters, required for HTTP.
+- Controller ID: 20 or more letters and digits, required for HTTP.
 - Hash: optional per Neo, but always send one. 7 digits, never reused. Neo suggests the last 7 digits of the current time in milliseconds. Add 1 if it equals the last one sent.
 - 200: received and transmitted. 400: command invalid. 401: controller ID not found (start re-authentication, see below). 404: wrong path. 409: hash already used, so retry once with a new hash. Any other failure: report the status.
 - 10 second timeout.
@@ -249,7 +249,7 @@ cover:
     name: Front blind
     blind_code: "021.230-04"
     close_time: 20
-    hub_id: <24 character id>
+    hub_id: <controller id>
     protocol: http
     port: 8838
     rail: 1

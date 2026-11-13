@@ -15,6 +15,10 @@ from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers import entity_registry as er
 
 from custom_components.neosmartblinds.const import DOMAIN
+from custom_components.neosmartblinds.validation import (
+    ControllerValidationError,
+    validate_hub_id,
+)
 
 from .conftest import HUB_ID, advance, blind_subentry, make_entry, setup_entry
 from .fake_controller import FakeController
@@ -70,13 +74,13 @@ async def test_user_flow_tcp(hass: HomeAssistant, controller: FakeController) ->
     ("user_input", "error"),
     [
         ({}, {"hub_id": "hub_id_required"}),
-        ({"hub_id": "short"}, {"hub_id": "invalid_hub_id"}),
+        ({"hub_id": "not-an-id!"}, {"hub_id": "invalid_hub_id"}),
     ],
 )
 async def test_user_flow_hub_id_errors(
     hass: HomeAssistant, controller: FakeController, user_input: dict, error: dict
 ) -> None:
-    """HTTP needs a 24 character controller ID."""
+    """HTTP needs a controller ID of 20 or more letters and digits."""
     result = await _start(hass)
     result = await hass.config_entries.flow.async_configure(
         result["flow_id"], {"port": controller.http_port, **user_input}
@@ -183,7 +187,7 @@ async def test_reauth_on_401(hass: HomeAssistant, controller: FakeController) ->
     assert not any("_command_" in key for key in _async_get_or_create_notifications(hass))
 
     result = await hass.config_entries.flow.async_configure(
-        flows[0]["flow_id"], {"hub_id": "bad"}
+        flows[0]["flow_id"], {"hub_id": "bad id"}
     )
     assert result["errors"] == {"hub_id": "invalid_hub_id"}
     result = await hass.config_entries.flow.async_configure(
@@ -428,3 +432,15 @@ async def test_delete_blind(hass: HomeAssistant, controller: FakeController) -> 
     await hass.async_block_till_done()
     assert er.async_get(hass).async_get("cover.front") is None
     assert hass.states.get("cover.front") is None
+
+
+def test_short_hub_id_is_accepted() -> None:
+    """Neo documents 20+ characters; some controllers show 22 (issue #1)."""
+    assert validate_hub_id(" " + "E" * 22 + " ", "http") == "E" * 22
+    assert validate_hub_id("E" * 20, "http") == "E" * 20
+
+
+def test_hub_id_under_20_is_rejected() -> None:
+    """Fewer than 20 characters is not a controller ID."""
+    with pytest.raises(ControllerValidationError):
+        validate_hub_id("E" * 19, "http")

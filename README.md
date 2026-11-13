@@ -77,7 +77,7 @@ To name rooms, choose **Configure** on the controller entry. There's one field p
 ### Where to find each value in the Neo app
 
 - **Host**: the controller's IP address is under **Your Controllers**. If you have more than one controller, use the one the blind's room is assigned to. Giving the controller a fixed IP address in your router is a good idea.
-- **Controller ID**: the 24-character ID is shown under **Your Controller**.
+- **Controller ID**: the ID is shown under **Your Controller**. It is 20 or more characters; enter it exactly as shown.
 - **Blind code**: open the blind and go to its advanced page. It shows the ID pair (ID1.ID2) and the channel. Every blind in a room shares the same ID pair.
 - **Room code**: the room's ID pair with channel `15`. For blinds `021.230-04` and `021.230-05`, the room code is `021.230-15`.
 - **Motor code**: not shown in the app. Pick the brand of your motor. The codes come from Neo's motor table:
@@ -166,7 +166,7 @@ cover:
     name: Front blind
     blind_code: "021.230-04"
     close_time: 20
-    hub_id: <24 character id>
+    hub_id: <controller id>
     protocol: http
     port: 8838
     rail: 1

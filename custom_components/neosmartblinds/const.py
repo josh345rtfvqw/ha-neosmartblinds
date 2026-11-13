@@ -38,7 +38,8 @@ PROTOCOLS: Final = (PROTOCOL_HTTP, PROTOCOL_TCP)
 DEFAULT_PORTS: Final = {PROTOCOL_HTTP: 8838, PROTOCOL_TCP: 8839}
 DEFAULT_CLOSE_TIME: Final = 20
 
-HUB_ID_LENGTH: Final = 24
+# Neo's API documents the controller ID as 20 or more characters.
+HUB_ID_MIN_LENGTH: Final = 20
 
 MODE_OPEN_CLOSE: Final = 0
 MODE_MOTOR_POSITION: Final = 1
