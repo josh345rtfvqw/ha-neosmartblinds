@@ -17,7 +17,7 @@ from .const import (
 
 # Neo documents the controller ID as 20 or more characters. Many are 24, but
 # some controllers show shorter ones, so no exact length is required.
-_HUB_ID = re.compile(rf"^[A-Za-z0-9]{{{HUB_ID_MIN_LENGTH},}}$")
+_HUB_ID = re.compile(rf"^[A-Za-z0-9_]{{{HUB_ID_MIN_LENGTH},}}$")
 
 
 class ControllerValidationError(Exception):

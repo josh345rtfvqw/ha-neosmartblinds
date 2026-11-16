@@ -61,7 +61,7 @@
       "invalid_port": "Enter a port from 1 to 65535.",
       "invalid_protocol": "Pick HTTP or TCP.",
       "hub_id_required": "HTTP needs the controller ID.",
-      "invalid_hub_id": "The controller ID is 20 or more letters and digits.",
+      "invalid_hub_id": "The controller ID is 20 or more letters, digits and underscores.",
       "cannot_connect": "Could not connect to the controller on that host and port."
     },
     "abort": {
