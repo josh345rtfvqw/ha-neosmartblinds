@@ -80,7 +80,7 @@ async def test_user_flow_tcp(hass: HomeAssistant, controller: FakeController) ->
 async def test_user_flow_hub_id_errors(
     hass: HomeAssistant, controller: FakeController, user_input: dict, error: dict
 ) -> None:
-    """HTTP needs a controller ID of 20 or more letters and digits."""
+    """HTTP needs a controller ID of 20 or more letters, digits and underscores."""
     result = await _start(hass)
     result = await hass.config_entries.flow.async_configure(
         result["flow_id"], {"port": controller.http_port, **user_input}
@@ -438,6 +438,12 @@ def test_short_hub_id_is_accepted() -> None:
     """Neo documents 20+ characters; some controllers show 22 (issue #1)."""
     assert validate_hub_id(" " + "E" * 22 + " ", "http") == "E" * 22
     assert validate_hub_id("E" * 20, "http") == "E" * 20
+
+
+def test_hub_id_with_underscore_is_accepted() -> None:
+    """Some controller IDs contain underscores, which the controller accepts (PR #2)."""
+    assert validate_hub_id("Ab3_" * 6, "http") == "Ab3_" * 6
+    assert validate_hub_id("_" * 20, "http") == "_" * 20
 
 
 def test_hub_id_under_20_is_rejected() -> None:
